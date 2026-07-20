@@ -1,286 +1,280 @@
 <!doctype html>
 <html lang="zh-Hant-TW">
+
 <head>
-<!-- Required meta tags -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<!-- D3, jquery -->
-<script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js" charset="utf-8"></script>
+    <!-- D3, jquery -->
+    <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" charset="utf-8"></script>
 
-<!-- Bootstrap CSS -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
 
-<title>作業五</title>
-<!-- https://alexlenail.me/NN-SVG/about.html -->
-<link rel="icon" href="../hw00/favicon.svg"/>
-<style type="text/css">
-  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100&display=swap');
+    <title>作業五</title>
+    <!-- https://alexlenail.me/NN-SVG/about.html -->
+    <link rel="icon" href="../hw00/favicon.svg" />
+    
+    <style type="text/css">
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100&display=swap');
 
-  @font-face {
-    font-family:'CircleFont';
-    src: url(https://circle472.github.io/ct2022s/hw04/CircleFont_v2.woff2); 
-  }
+        @font-face {
+            font-family: 'CircleFont';
+            src: url(https://circle472.github.io/ct2022s/hw04/CircleFont_v2.woff2);
+        }
 
-  table {
-      border-collapse: collapse;
-      border: 2px solid white; /* rgba(217,140,144,1) */
-      font-size:  16pt;
-      margin-left: auto;
-      margin-right: auto;
-  }
+        table {
+            border-collapse: collapse;
+            border: 2px solid white;
+            /* rgba(217,140,144,1) */
+            font-size: 16pt;
+            margin-left: auto;
+            margin-right: auto;
+        }
 
-  td,
-  th {
-      border: 1px solid white;
-      padding: 2px 8px;
-  }
+        td,
+        th {
+            border: 1px solid white;
+            padding: 2px 8px;
+        }
 
-  .flipswitch
-  {
-      position: relative;
-      background: white;
-      width: 120px;
-      height: 20px;
-      -webkit-appearance: initial;
-      border-radius: 3px;
-      -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-      outline:none;
-      font-size: 14px;
-      font-family: Trebuchet, Arial, sans-serif;
-      font-weight: bold;
-      cursor:pointer;
-      border:1px solid #ddd;
-  }
-  .flipswitch:after
-  {
-      position:absolute;
-      top:5%;
-      display:block; 
-      line-height:16px;
-      width:45%;
-      height:90%;
-      background:#fff;
-      box-sizing:border-box;
-      text-align:center;
-      transition: all 0.3s ease-in 0s; 
-      color:rgba(159,53,58,1);
-      border:#888 1px solid;
-      border-radius:3px;
-  }
-  .flipswitch:after
-  {
-      left:2%;
-      content: "未完成";
-  }
-  .flipswitch:checked:after
-  {
-      left:53%;
-      content: "完成";
-  }
+        .flipswitch {
+            position: relative;
+            background: white;
+            width: 120px;
+            height: 20px;
+            -webkit-appearance: initial;
+            border-radius: 3px;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+            outline: none;
+            font-size: 14px;
+            font-family: Trebuchet, Arial, sans-serif;
+            font-weight: bold;
+            cursor: pointer;
+            border: 1px solid #ddd;
+        }
 
-  body {
-    background-color: rgb(106, 76, 156); /* #6A4C9C */
-    color: rgb(106, 76, 156);
-    font-family: 'CircleFont', 'Noto Sans JP', serif;
-  }
+        .flipswitch:after {
+            position: absolute;
+            top: 5%;
+            display: block;
+            line-height: 16px;
+            width: 45%;
+            height: 90%;
+            background: #fff;
+            box-sizing: border-box;
+            text-align: center;
+            transition: all 0.3s ease-in 0s;
+            color: rgba(159, 53, 58, 1);
+            border: #888 1px solid;
+            border-radius: 3px;
+        }
 
-  .container-fluid {
-    width:  90%;
-  }
+        .flipswitch:after {
+            left: 2%;
+            content: "未完成";
+        }
 
-  .hw12 {
-    border: 1px solid rgb(159, 53, 58);
-    margin-top: 8px;
-    margin-bottom: 8px;
-  }
+        .flipswitch:checked:after {
+            left: 53%;
+            content: "完成";
+        }
 
-  .twenty {
-    border: 1px solid #f9eced;
-    color: #f9eced;
-    padding: 8px;
-    font-size: 18pt;
-  }
+        body {
+            background-color: rgb(106, 76, 156);
+            /* #6A4C9C */
+            color: rgb(106, 76, 156);
+            font-family: 'CircleFont', 'Noto Sans JP', serif;
+        }
 
-  .twenty a {
-    color:  yellow;
-  }
+        .container-fluid {
+            width: 90%;
+        }
 
-  .twenty a:hover {
-    color: #f9eced;
-    font-size:  16pt;
-  }
+        .hw12 {
+            border: 1px solid rgb(159, 53, 58);
+            margin-top: 8px;
+            margin-bottom: 8px;
+        }
 
-  .twenty:hover {
-      box-shadow: 0 0 5px 3px #f9eced;
-      color: cyan; 
-      text-shadow: 0 0 6px #FFFFFF, 0 0 6px #000000;
-  }
+        .twenty {
+            border: 1px solid #f9eced;
+            color: #f9eced;
+            padding: 8px;
+            font-size: 18pt;
+        }
 
-  .toprow {
-    margin-top: 36px;
-  }
+        .twenty a {
+            color: yellow;
+        }
 
-  .bottomrow {
-    margin-bottom: 36px;
-  }
-</style>
+        .twenty a:hover {
+            color: #f9eced;
+            font-size: 16pt;
+        }
+
+        .twenty:hover {
+            box-shadow: 0 0 5px 3px #f9eced;
+            color: cyan;
+            text-shadow: 0 0 6px #FFFFFF, 0 0 6px #000000;
+        }
+
+        .toprow {
+            margin-top: 36px;
+        }
+
+        .bottomrow {
+            margin-bottom: 36px;
+        }
+    </style>
 </head>
+
 <body>
 
-<div class="container-fluid">
+    <div class="container-fluid">
 
-  <!-- ---------------------------------------------- -->
-  <div class="row hw12 toprow">
-    <div class="col twenty"><a href="../hw00/index.html">00</a></div>
-    <div class="col twenty"><a href="../hw01/index.html">01</a></div>
-    <div class="col twenty"><a href="../hw02/index.html">02</a></div>
-    <div class="col twenty"><a href="../hw03/index.html">03</a></div>
-    <div class="col twenty"><a href="../hw04/index.html">04</a></div>
-    <div class="col twenty"><a href="../hw05/index.html">05</a></div>
-    <div class="col twenty"><a href="../hw06/index.html">06</a></div>
-  </div>
+        <!-- ---------------------------------------------- -->
+        <div class="row hw12 toprow">
+            <div class="col twenty"><a href="../hw00/index.html">00</a></div>
+            <div class="col twenty"><a href="../hw01/index.html">01</a></div>
+            <div class="col twenty"><a href="../hw02/index.html">02</a></div>
+            <div class="col twenty"><a href="../hw03/index.html">03</a></div>
+            <div class="col twenty"><a href="../hw04/index.html">04</a></div>
+            <div class="col twenty"><a href="../hw05/index.html">05</a></div>
+            <div class="col twenty"><a href="../hw06/index.html">06</a></div>
+        </div>
 
-  <!-- ------------------------------------------------>
-  <div class="row hw12">
-    <div class="col-md-12 twenty">
-      <h1>作業 05</h1>
-    </div>
-  </div>
+        <!-- ------------------------------------------------>
+        <div class="row hw12">
+            <div class="col-md-12 twenty">
+                <h1>作業 05</h1>
+            </div>
+        </div>
 
-  <!-- ------------------------------------------------>
-  <div class="row hw12">
-    <div class="col-md-12 twenty">
-      這次作業主要是進行模型訓練。我使用作業提供的訓練用資料集，嘗試不同大小版本的模型，並調整 batch size 與 epochs 開始訓練。雖然過程需要反覆測試，但最大收穫是能觀察不同參數對模型表現的影響。這讓我體會到參數調校的重要性，也對模型訓練流程有了具體掌握。
-    </div>
-  </div>
+        <!-- ------------------------------------------------>
+        <div class="row hw12">
+            <div class="col-md-12 twenty">
+                這次作業主要是進行模型訓練。我使用作業提供的訓練用資料集，嘗試不同大小版本的模型，並調整 batch size 與 epochs
+                開始訓練。雖然過程需要反覆測試，但最大收穫是能觀察不同參數對模型表現的影響。這讓我體會到參數調校的重要性，也對模型訓練流程有了具體掌握。
+            </div>
+        </div>
 
-  <!-- ------------------------------------------------>
-  <div class="row hw12">
-    <div class="col-md-12 twenty">
-      <table>
-        <tr>
-          <th>總分</th>
-          <th>完成後打勾</th>
-          <th>配分</th>
-          <th>分項描述</th>
-        </tr>
-        <tr>
-          <td rowspan="4" id="myTotal"></td>
-          <td><input type="checkbox" class="flipswitch" id="myCheckbox1" checked></td>
-          <td id='m1'>4</td>
-          <td>Simple baseline - 完成 baseline Colab 訓練得到訓練分數及訓練權重</td>
-        </tr>
-        <tr>
-          <td><input type="checkbox" class="flipswitch" id="myCheckbox2" checked></td>
-          <td id='m2'>4</td>
-          <td>Medium baseline - 調整訓練筆數、Epochs 或其他參數得到比 Simple baseline 更高的分數</td>
-        </tr>
-        <tr>
-          <td><input type="checkbox" class="flipswitch" id="myCheckbox3" checked></td>
-          <td id='m3'>2</td>
-          <td>Strong baseline - 使用不同版本、大小模型進行訓練並繳交 Colab</td>
-        </tr>
-        <tr>
-          <td><input type="checkbox" class="flipswitch" id="myCheckbox4"></td>
-          <td id='m4'>-10</td>
-          <td>沒有寫100字心得</td>
-        </tr>
+        <!-- ------------------------------------------------>
+        <div class="row hw12">
+            <div class="col-md-12 twenty">
+                <table>
+                    <tr>
+                        <th>總分</th>
+                        <th>完成後打勾</th>
+                        <th>配分</th>
+                        <th>分項描述</th>
+                    </tr>
+                    <tr>
+                        <td rowspan="4" id="myTotal"></td>
+                        <td><input type="checkbox" class="flipswitch" id="myCheckbox1" checked></td>
+                        <td id='m1'>4</td>
+                        <td>Simple baseline - 完成 baseline Colab 訓練得到訓練分數及訓練權重</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" class="flipswitch" id="myCheckbox2" checked></td>
+                        <td id='m2'>4</td>
+                        <td>Medium baseline - 調整訓練筆數、Epochs 或其他參數得到比 Simple baseline 更高的分數</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" class="flipswitch" id="myCheckbox3" checked></td>
+                        <td id='m3'>2</td>
+                        <td>Strong baseline - 使用不同版本、大小模型進行訓練並繳交 Colab</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" class="flipswitch" id="myCheckbox4"></td>
+                        <td id='m4'>-10</td>
+                        <td>沒有寫100字心得</td>
+                    </tr>
 
-      </table>
-    </div>
-  </div>
+                </table>
+            </div>
+        </div>
 
-  <!-- ------------------------------------------------>
-  <div class="row hw12 bottomrow">
-    <div class="col-md-12 twenty">
-      <!-- <iframe width="100%" height="560" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> -->
+        <!-- ------------------------------------------------>
+        <div class="row hw12 bottomrow">
+            <div class="col-md-12 twenty">
+                <!-- <iframe width="100%" height="560" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> -->
 
-      <table>
-        <tr>
-          <td> Simple Baseline mAP50 分數圖片
-          <img src="simple.png" width="100%" height="auto">
-        </tr>
-        <tr>
-          <td> Medium Baseline mAP50 分數圖片，使用Baseline模型接續訓練20個 Epochs 得到更高分
-          <img src="medium.png" width="100%" height="auto">
-        </tr>
-        <tr>
-          <td> Strong Baseline <br>
-          Colab連結: 
-          <a href="https://colab.research.google.com/drive/1bo_LAH8mEjYh1wawpiVW8AHl2bzxCZWE?usp=sharing">
-          https://colab.research.google.com/drive/1bo_LAH8mEjYh1wawpiVW8AHl2bzxCZWE?usp=sharing
-          </a> <br>
-          使用YOLOv8n
-          <img src="strong_v8n.png" width="100%" height="auto">
-          使用YOLO11n
-          <img src="strong_11n.png" width="100%" height="auto">
-          使用YOLO26n
-          <img src="strong_26n.png" width="100%" height="auto">
-          使用YOLOv8m
-          <img src="strong_v8m.png" width="100%" height="auto">
-          使用YOLO11m
-          <img src="strong_11m.png" width="100%" height="auto">
-          使用YOLO26m
-          <img src="strong_26m.png" width="100%" height="auto">
-        </tr>
-      </table>
-    </div>
-  </div>
+                <table>
+                    <tr>
+                        <td> Simple Baseline mAP50 分數圖片
+                            <img src="simple.png" width="100%" height="auto">
+                    </tr>
+                    <tr>
+                        <td> Medium Baseline mAP50 分數圖片，使用 Simple Baseline 模型接續訓練20個 Epochs 得到更高分數
+                            <img src="medium.png" width="100%" height="auto">
+                    </tr>
+                    <tr>
+                        <td> Strong Baseline <br>
+                            Colab連結:
+                            <a
+                                href="https://colab.research.google.com/drive/1bo_LAH8mEjYh1wawpiVW8AHl2bzxCZWE?usp=sharing">
+                                https://colab.research.google.com/drive/1bo_LAH8mEjYh1wawpiVW8AHl2bzxCZWE?usp=sharing
+                            </a> <br>
+                            使用YOLOv8n
+                            <img src="strong_v8n.png" width="100%" height="auto">
+                            使用YOLO11n
+                            <img src="strong_11n.png" width="100%" height="auto">
+                            使用YOLO26n
+                            <img src="strong_26n.png" width="100%" height="auto">
+                            使用YOLOv8m
+                            <img src="strong_v8m.png" width="100%" height="auto">
+                            使用YOLO11m
+                            <img src="strong_11m.png" width="100%" height="auto">
+                            使用YOLO26m
+                            <img src="strong_26m.png" width="100%" height="auto">
+                    </tr>
+                </table>
+            </div>
+        </div>
 
-  <!-- ------------------------------------------------>
+        <!-- ------------------------------------------------>
+        <script>
+            $(function () {
+                var f = function () {
+                    $(this).next().text($(this).is(':checked') ? '做完' : '未做完');
+                };
+                $('input').change(f).trigger('change');
+            });
 
-  <!-- ------------------------------------------------>
+            d3.select("#myCheckbox1").on("change", update);
+            d3.select("#myCheckbox2").on("change", update);
+            d3.select("#myCheckbox3").on("change", update);
+            d3.select("#myCheckbox4").on("change", update);
+            update();
 
+            function update() {
 
-<script>
-  $(function() {
-    var f = function() {
-      $(this).next().text($(this).is(':checked') ? '做完' : '未做完');
-    };
-    $('input').change(f).trigger('change');
-  });
+                var score = 0;
 
-  d3.select("#myCheckbox1").on("change",update);
-  d3.select("#myCheckbox2").on("change",update);
-  d3.select("#myCheckbox3").on("change",update);
-  d3.select("#myCheckbox4").on("change",update);
-  // d3.select("#myCheckbox5").on("change",update);
-  // d3.select("#myCheckbox6").on("change",update);
-  // d3.select("#myCheckbox7").on("change",update);
+                if (d3.select("#myCheckbox1").property("checked")) {
+                    score += parseInt(d3.select('#m1').html());
+                }
 
-  update();
-  
-  function update(){
+                if (d3.select("#myCheckbox2").property("checked")) {
+                    score += parseInt(d3.select('#m2').html());
+                }
 
-    var score = 0;
+                if (d3.select("#myCheckbox3").property("checked")) {
+                    score += parseInt(d3.select('#m3').html());
+                }
 
-    if (d3.select("#myCheckbox1").property("checked")){
-      score += parseInt(d3.select('#m1').html());
-    }
+                if (d3.select("#myCheckbox4").property("checked")) {
+                    score += parseInt(d3.select('#m4').html());
+                }
 
-    if (d3.select("#myCheckbox2").property("checked")){
-      score += parseInt(d3.select('#m2').html());   
-    }
-
-    if (d3.select("#myCheckbox3").property("checked")){
-      score += parseInt(d3.select('#m3').html());   
-    }
-
-    if (d3.select("#myCheckbox4").property("checked")){
-      score += parseInt(d3.select('#m4').html());   
-    }
-
-
-    d3.select("#myTotal").html(score);    
-  }
-</script>
+                d3.select("#myTotal").html(score);
+            }
+        </script>
 
 </body>
+
 </html>
-
-
-
-
